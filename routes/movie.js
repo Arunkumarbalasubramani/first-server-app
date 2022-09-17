@@ -49,16 +49,18 @@ router.put("/:id", async (request, response) => {
 
   response.send(result);
 });
-router.delete("/movies/:id", async (request, response) => {
+
+router.delete("/:id", async (request, response) => {
   const { id } = request.params;
 
   const result = await client
     .db("b33we")
     .collection("movies")
     .deleteOne({ id: id });
+
   result.deletedCount > 0
-    ? response.send({ Msg: " Movie Has been deleted successfully" })
-    : response.status(404).send({ Msg: " Movie not found" });
+    ? response.send({ msg: " Movie Has been deleted successfully" })
+    : response.status(404).send({ msg: " Movie not found" });
 });
 
 export const movieRouter = router;
