@@ -20,7 +20,7 @@ export const client = await createConnection();
 app.use(express.json());
 
 app.get("/", function (request, response) {
-  response.send("Hello World 😎😘 😡");
+  response.send("Welcome to Movies API 😉😊");
 });
 app.use("/movies", movieRouter);
 
