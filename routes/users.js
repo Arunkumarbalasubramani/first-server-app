@@ -2,7 +2,7 @@ import express from "express";
 import { client } from "../index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { addNewUser, findUserfromDB } from "./findUserfromDB.js";
+import { addNewUser, findUserfromDB } from "./user-helper.js";
 
 const router = express.Router();
 
