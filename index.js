@@ -2,6 +2,7 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
 import { movieRouter } from "./routes/movie.js";
+import { usersRouter } from "./routes/users.js";
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ app.get("/", function (request, response) {
   response.send("Welcome to Movies API 😉😊");
 });
 app.use("/movies", movieRouter);
+app.use("/users", usersRouter);
 
 // const movies = [
 //   {
