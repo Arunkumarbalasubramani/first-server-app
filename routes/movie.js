@@ -9,7 +9,7 @@ import {
 } from "./movie-helper.js";
 const router = express.Router();
 
-router.get("/", auth, async (request, response) => {
+router.get("/", async (request, response) => {
   if (request.query.rating) {
     request.query.rating = +request.query.rating;
   }
@@ -19,7 +19,7 @@ router.get("/", auth, async (request, response) => {
   response.send(movies);
 });
 
-router.get("/:id", auth, async (request, response) => {
+router.get("/:id", async (request, response) => {
   const { id } = request.params;
 
   const movie = await getMoviesById(id);
