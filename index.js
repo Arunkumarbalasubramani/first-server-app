@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
 import { movieRouter } from "./routes/movie.js";
 import { usersRouter } from "./routes/users.js";
-
+import cors from "cors";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
@@ -19,6 +19,7 @@ async function createConnection() {
 }
 export const client = await createConnection();
 app.use(express.json());
+app.use(cors());
 
 app.get("/", function (request, response) {
   response.send("Welcome to Movies API 😉😊");
