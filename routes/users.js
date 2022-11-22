@@ -3,9 +3,10 @@ import { client } from "../index.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { addNewUser, findUserfromDB } from "./user-helper.js";
+import cors from "cors";
 
 const router = express.Router();
-
+router.use(cors());
 async function generateHashedPassword(password) {
   const NO_OF_ROUNDS = 10;
   const salt = await bcrypt.genSalt(NO_OF_ROUNDS);
@@ -16,7 +17,7 @@ async function generateHashedPassword(password) {
 }
 
 router.post("/signup", async (request, response) => {
-  const { username, password } = request.body;
+  const { username, password, email } = request.body;
   const hasedPassword = await generateHashedPassword(password);
   const userfromDB = await findUserfromDB(username);
   if (userfromDB) {
@@ -24,7 +25,7 @@ router.post("/signup", async (request, response) => {
   } else if (password.length < 8) {
     response.status(404).send({ msg: "Password Must be atleast 8 Characters" });
   } else {
-    const result = await addNewUser(username, hasedPassword);
+    const result = await addNewUser(username, hasedPassword, email);
     response.send(result);
   }
 });

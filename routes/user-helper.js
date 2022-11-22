@@ -5,9 +5,10 @@ export async function findUserfromDB(username) {
     username: username,
   });
 }
-export async function addNewUser(username, hasedPassword) {
+export async function addNewUser(username, hasedPassword, email) {
   return await client.db("b33we").collection("users").insertOne({
     username: username,
     password: hasedPassword,
+    email: email,
   });
 }
